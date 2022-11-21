@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,6 @@
 </html>
 
 <?php
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -36,9 +36,17 @@ if (isset($_POST['update'])) {
 	  echo $quantity = $_POST['quantity'];
 
 	 
- $sql =  "UPDATE `product` SET product_name = `$products`, product_quantity = `$quantity` WHERE id = $id";
+ $sql =  "UPDATE `product` SET `product_name` = `$products`, `product_quantity` = `$quantity` WHERE id = $id";
       $result = mysqli_query($conn ,$sql);
+if($result)
+{
+echo " Records updated";
+}
 
+else
+{
+echo "not update";
+}
 	
 }
 ?>
