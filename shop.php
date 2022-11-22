@@ -2,16 +2,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+ 
 </head>
 <body>
+<div class="container">
 
-<form action="" method="post">
-<label>Product Name:</label>
-<input class="input" name="products" type="text" value="">
-<label>Product Quantity:</label>
-<input class="input" name="quantity" type="text" value="" required>
-<!--<input class="input" name="product_sell" type="text" value="" required>-->
-<input class="submit" name="submit" type="submit" value="Insert" required>
+<form class="form-horizontal" action="" method="post">
+  <fieldset class="scheduler-border">
+     <legend class="scheduler-border">Product Form:</legend>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="Product">Product Name:</label>
+      <div class="col-sm-12">
+<input class="input" name="products" type="text" class="form-control" value="">
+</div>
+</div>
+<div class="form-group">
+      <label class="control-label col-sm-2" for="Quantity">Product Quantity:</label>
+      <div class="col-sm-12">
+<input class="input" name="quantity" type="text" class="form-control" value="" required>
+</div>
+</div>
+ <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-4">
+<input class="submit" name="submit" class="btn btn-success" type="submit"  value="Insert">
+</div>
+</div>
+  </fieldset>
 </form>
 </body>
 </html>
@@ -48,8 +66,10 @@ if ($conn->query($sql) === TRUE) {
 
 $sql = "SELECT * FROM product";
 if($result = mysqli_query($conn, $sql)){
-    if(mysqli_num_rows($result) > 0){
-        echo "<table>";
+    if(mysqli_num_rows($result) > 0){?>
+
+       <table class="table table-striped">
+       <?php //echo "<table>";
             echo "<tr>";
                 echo "<th>id</th>";
                 echo "<th>Item Name</th>";
@@ -67,15 +87,17 @@ if($result = mysqli_query($conn, $sql)){
                 echo "<td>" . $row['product_quantity'] . "</td>";
                 echo "<td>" . $remaing_product . "</td>";
               echo  "<td>"
-				?> <a href="edit.php?id=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a> <?php
+				?> <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn-success" >Edit</a> <?php
 			"</td>";
-		"<td>"
+		echo "<td>"
 				?>
-				<a href="delete.php?id=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+				<a href="delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete?')" class="btn-danger">Delete</a>
 		<?php	"</td>";
             echo "</tr>";
         }
-        echo "</table>";
+        echo "</table>";?>
+      </div>
+      <?php
         // Free result set
         mysqli_free_result($result);
     } else{
