@@ -4,7 +4,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "shop";
-$id = $_GET['del'];
+$id = $_GET['id'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
